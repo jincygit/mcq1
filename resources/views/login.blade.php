@@ -7,17 +7,15 @@
 </head>
 <body>
     <div style="border:2px solid black">
-        <h1>REGISTER </h1>
-        <form action="/register" method="POST">
+        <h1>LOGIN </h1>
+        <form action="/login" method="POST">
             @csrf
             <input type ="text" placeholder = "name" name ="name">
+            {{-- password is not included because it is not mention in given input data, so login using namme and email --}}
             <input type ="text" placeholder = "email" name ="email">
-            <input type ="text" placeholder = "Referral code(optional)" name ="refferal_code">
-            <button>Register</button>
+            <button>login</button>
         </form>
     </div>
    <a href="/get_users" ><h1>GET USERS</h1></a>
-   <a href="/logout" ><h3>LOGOUT</h3></a>
-   <a href="/login" ><h3>LOGIN</h3></a>
 </body>
 </html>

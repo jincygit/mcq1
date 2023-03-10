@@ -7,9 +7,9 @@
 </head>
 <body>
     <div style="border:2px solid black">
-        <h1>REGISTRATION SUCCESSFULLY COMPLETED </h1><br>
+        <h1>LOGIN SUCCESSFULLY COMPLETED </h1><br>
         @php
-            print_r($refferal_code);
+            print_r($_SESSION['useremail']);
         @endphp
         <br>
         <p>This is your referral code </p>

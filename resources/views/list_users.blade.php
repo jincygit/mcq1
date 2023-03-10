@@ -22,6 +22,8 @@
         
     </div>
    <a href="/" ><h1>BACK</h1></a>
+   <a href="/logout" ><h3>LOGOUT</h3></a>
+   <a href="/login" ><h3>LOGIN</h3></a>
     
 
 </body>

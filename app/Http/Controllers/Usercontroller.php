@@ -46,14 +46,46 @@ class Usercontroller extends Controller
         $user =Point::create($point_data); 
         return view('successful_page_after_register', ['refferal_code' => $incoming_requests['refferal_code']]);       
         //return redirect('/get_users');
-        //successful_page_after_register.blade.php
     }
+
+
     public function list_users()
     {
         $user_data = DB::select('SELECT users.id AS user_id, points.points FROM users LEFT JOIN points ON users.id=points.user_id WHERE 1'); 
         //convert std object to array
         $user_data = json_decode(json_encode($user_data, true), true); 
         return view('list_users', ['user_data' => $user_data]);
+    }
+
+    public function login(Request $request)
+    {
+        //validations
+        $incoming_requests = $request->validate([
+            'name'=>['required','min:3'],
+            'email'=>'required|email',
+        ]);
+        $users = User::where([
+            'name' => $incoming_requests['name'],
+            'email' => $incoming_requests['email']
+        ])->get();
+        
+        if(!empty($users)){
+        $user_data = json_decode(json_encode($users, true), true);
+        $_SESSION['useremail']=$user_data[0]['email'];
+        //Session::flash('useremail', $user_data[0]['email']);
+        return view('dashboard', ['user_data' => $user_data]); 
+        }
+        else{
+            return view('login');
+        }    
+    }
+
+
+    public function logout(Request $request)
+    {
+        session_unset();  
+        return redirect('/login');
+            
     }
 
 }

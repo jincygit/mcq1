@@ -19,8 +19,16 @@ use App\Http\Controllers\Usercontroller;
 Route::get('/', function () {
     return view('home');
 });
+//show login
+Route::get('/login', function () {
+    return view('login');
+});
 Route::post('/register', [Usercontroller::class, 'register']);
 Route::get('/get_users', [Usercontroller::class, 'list_users']);
+Route::post('/login', [Usercontroller::class, 'login']);
+Route::post('/logout', [Usercontroller::class, 'logout']);
+
+
 
 
 

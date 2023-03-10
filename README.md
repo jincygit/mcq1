@@ -10,6 +10,8 @@ get baseurl after run command"php artisan serve"
 ## URLS [Added in web.php in routes folder]
 baseurl              ---for register
 baseurl+/get_users   ---for getting registeered users
+baseurl+/login       ---for login
+baseurl+/logout      ---for logout
 
 ## Main controller 
 Usercontroller
