@@ -13,6 +13,7 @@ class Usercontroller extends Controller
 {
     public function register(Request $request)
     {
+        //validations
         $incoming_requests = $request->validate([
             'name'=>['required','min:3'],
             'email'=>'required|email',
@@ -20,16 +21,15 @@ class Usercontroller extends Controller
         ]);
        
         if(!empty($incoming_requests['refferal_code'])){
-  
-            $users = User::where('refferal_code', $incoming_requests['refferal_code'])->get();
-            $users_data = json_decode(json_encode($users, true), true);
             //get current point of particular refferal code user
-            $points = Point::where('user_id',$users_data[0]['id'])->get();
-            $points_data = json_decode(json_encode($points, true), true);
-            if(!empty($users)){
-                $points=$points_data[0]['points']+1;
-                //update points for refferal code user 
-                Point::where('id', $users_data[0]['id'])->update(array('points' => $points));
+            $user_data = DB::select('SELECT users.id AS user_id, points.points AS points FROM users LEFT JOIN points ON users.id=points.user_id WHERE users.refferal_code = ?', [$incoming_requests['refferal_code']]); 
+            //convert std object to array
+            $user_data = json_decode(json_encode($user_data, true), true);
+            
+            if(!empty($user_data)){
+                $points=$user_data[0]['points']+1;
+                //update points for refferal code user only if valid referral code
+                Point::where('id', $user_data[0]['user_id'])->update(array('points' => $points));
             }
         }
         //getting last inserted id
@@ -42,9 +42,11 @@ class Usercontroller extends Controller
         //add user entry in user table
         $user =User::create($incoming_requests);
         $point_data = array("user_id"=>$user->id,"points"=>0);
-        //add user entry in  point table
-        $user =Point::create($point_data);        
-        return redirect('/get_users');
+        //add user entry with default points in  point table
+        $user =Point::create($point_data); 
+        return view('successful_page_after_register', ['refferal_code' => $incoming_requests['refferal_code']]);       
+        //return redirect('/get_users');
+        //successful_page_after_register.blade.php
     }
     public function list_users()
     {

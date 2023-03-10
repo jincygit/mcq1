@@ -3,7 +3,7 @@
 ## step 1
 in root folder contain mcq_db.sql file, Import this file in local server
 ## step2
-add database name in .env file and database.php file (in route/database.php)[ALREADY ADDED]
+add database name in .env file and database.php file (in route/database.php)[**ALREADY ADDED**]
 ## step3
 get baseurl after run command"php artisan serve"
 

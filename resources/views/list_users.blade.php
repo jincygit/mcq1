@@ -7,7 +7,7 @@
 </head>
 <body>
     <div style="border:2px solid black">
-        <h1>list users </h1>
+        <h1>LIST USERS </h1>
         
         <table border="1">
             <th>Level</th>
