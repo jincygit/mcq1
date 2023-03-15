@@ -16,8 +16,7 @@
             <button>Register</button>
         </form>
     </div>
-   <a href="/get_users" ><h1>GET USERS</h1></a>
-   <a href="/logout" ><h3>LOGOUT</h3></a>
-   <a href="/login" ><h3>LOGIN</h3></a>
+    <a href="/logout" ><h3>LOGOUT</h3></a>
+    <a href="/login" ><h3>LOGIN</h3></a>
 </body>
 </html>

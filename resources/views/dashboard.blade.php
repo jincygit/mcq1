@@ -7,15 +7,22 @@
 </head>
 <body>
     <div style="border:2px solid black">
-        <h1>LOGIN SUCCESSFULLY COMPLETED </h1><br>
-        @php
-            print_r($_SESSION['useremail']);
-        @endphp
-        <br>
-        <p>This is your referral code </p>
-        
+        @if(!empty(session('useremail')))
+            <h1>{{ session('useremail')}}  LOGIN SUCCESSFULLY COMPLETED </h1>
+            {{-- restrict users list section , only logged admin can see users list details --}}
+            @if(session('useremail')=="admin@gmail.com")   
+                <a href="/get_users" ><h3>GET USERS</h3></a>
+            @else 
+                <p>if you want to see admin section, kindly login with admin credentials  </p>
+                <p>kindly please login  <a href="/login" ><h5>LOGIN</h5></a> </p>
+            @endif
+        @else  
+            <p>kindly please login  <a href="/login" ><h5>LOGIN</h5></a> </p><br>
+        @endif  
     </div>
-   <a href="/get_users" ><h3>GET USERS</h3></a>
+    
+   
+   
    <a href="/" ><h3>REGISTER</h3></a>
    <a href="/logout" ><h3>LOGOUT</h3></a>
 </body>

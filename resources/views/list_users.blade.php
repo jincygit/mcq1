@@ -7,21 +7,28 @@
 </head>
 <body>
     <div style="border:2px solid black">
-        <h1>LIST USERS </h1>
-        
-        <table border="1">
-            <th>Level</th>
-            <th>Points</th>
-
-        @foreach ($user_data as $user)
-        <tr>
-        <td>Level {{$user['user_id']}} </td>
-        <td>{{$user['points']}} </td>
-        </tr>
-        @endforeach
+        {{-- restrict users list section , only logged admin can see users list details --}}
+        @if(session('useremail')=="admin@gmail.com")   
+            <h1>LIST USERS </h1>
+            <table border="1">
+                <tr>
+                    <th>Level</th>
+                    <th>Points</th>
+                </tr>
+                @foreach ($user_data as $user)
+                    <tr>
+                    <td>Level {{$user['user_id']}} </td>
+                    <td>{{$user['points']}} </td>
+                    </tr>
+                @endforeach
+            </table>
+        @else  
+            <p>if you want to see admin section, kindly login with admin credentials  </p>
+            <p>kindly please login  <a href="/login" ><h5>LOGIN</h5></a> </p>
+        @endif
         
     </div>
-   <a href="/" ><h1>BACK</h1></a>
+   <a href="/" ><h1>REGISTER</h1></a>
    <a href="/logout" ><h3>LOGOUT</h3></a>
    <a href="/login" ><h3>LOGIN</h3></a>
     

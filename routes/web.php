@@ -26,7 +26,7 @@ Route::get('/login', function () {
 Route::post('/register', [Usercontroller::class, 'register']);
 Route::get('/get_users', [Usercontroller::class, 'list_users']);
 Route::post('/login', [Usercontroller::class, 'login']);
-Route::post('/logout', [Usercontroller::class, 'logout']);
+Route::get('/logout', [Usercontroller::class, 'logout']);
 
 
 

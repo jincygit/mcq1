@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Point;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Point;
+use Illuminate\Support\Facades\Session;
 
 class Usercontroller extends Controller
 {
@@ -70,10 +71,11 @@ class Usercontroller extends Controller
         ])->get();
         
         if(!empty($users)){
-        $user_data = json_decode(json_encode($users, true), true);
-        $_SESSION['useremail']=$user_data[0]['email'];
-        //Session::flash('useremail', $user_data[0]['email']);
-        return view('dashboard', ['user_data' => $user_data]); 
+            $user_data = json_decode(json_encode($users, true), true);
+            //set session vaue at the time of login
+            session(['useremail' => $user_data[0]['email']]);
+            
+            return view('dashboard', ['user_data' => $user_data]); 
         }
         else{
             return view('login');
@@ -83,7 +85,8 @@ class Usercontroller extends Controller
 
     public function logout(Request $request)
     {
-        session_unset();  
+        //unset session vaue at the time of logout
+        session()->forget('useremail'); 
         return redirect('/login');
             
     }

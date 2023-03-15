@@ -8,15 +8,17 @@
 <body>
     <div style="border:2px solid black">
         <h1>REGISTRATION SUCCESSFULLY COMPLETED </h1><br>
+        <p>if you want to see admin section kindly login with admin credentials  </p>
+        <p>kindly please login  <a href="/login" ><h5>LOGIN</h5></a> </p>
+        
         @php
-            print_r($refferal_code);
+            echo $refferal_code;
         @endphp
         <br>
         <p>This is your referral code </p>
-        
     </div>
-   <a href="/get_users" ><h3>GET USERS</h3></a>
-   <a href="/" ><h3>REGISTER</h3></a>
-   <a href="/logout" ><h3>LOGOUT</h3></a>
+   
+    <a href="/" ><h3>REGISTER</h3></a>
+    <a href="/logout" ><h3>LOGOUT</h3></a>
 </body>
 </html>

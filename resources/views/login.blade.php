@@ -11,11 +11,18 @@
         <form action="/login" method="POST">
             @csrf
             <input type ="text" placeholder = "name" name ="name">
-            {{-- password is not included because it is not mention in given input data, so login using namme and email --}}
+            {{-- password is not included because it is not mention in given input data in question, so login using namme and email --}}
             <input type ="text" placeholder = "email" name ="email">
-            <button>login</button>
+            <button>Login</button>
         </form>
     </div>
-   <a href="/get_users" ><h1>GET USERS</h1></a>
+
+    <p>if you want to see admin section, kindly login with admin credentials  </p>
+    <p>kindly please login  <a href="/login" ><h5>LOGIN</h5></a> </p>
+    <a href="/" ><h5>REGISTER</h5></a>
+    <a href="/logout" ><h3>LOGOUT</h3></a>
+
+    
+
 </body>
 </html>

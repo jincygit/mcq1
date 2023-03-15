@@ -15,3 +15,7 @@ baseurl+/logout      ---for logout
 
 ## Main controller 
 Usercontroller
+
+## Admin credentials
+name = admin
+useremail = admin@gmail.com
