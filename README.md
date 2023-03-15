@@ -1,6 +1,7 @@
 ## STEPS
 
 ## step 1
+clone this repository
 in root folder contain mcq_db.sql file, Import this file in local server
 ## step2
 add database name in .env file and database.php file (in route/database.php)[**ALREADY ADDED**]
