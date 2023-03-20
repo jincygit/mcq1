@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Postcontoller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Postcontoller;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\Usercontroller;
 
 /*
@@ -27,6 +28,8 @@ Route::post('/register', [Usercontroller::class, 'register']);
 Route::get('/get_users', [Usercontroller::class, 'list_users']);
 Route::post('/login', [Usercontroller::class, 'login']);
 Route::get('/logout', [Usercontroller::class, 'logout']);
+Route::get('/dashboard', [Usercontroller::class, 'dashboard']);
+
 
 
 

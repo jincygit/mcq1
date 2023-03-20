@@ -3,21 +3,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machinetest-  sucessful registration</title>
+    <title>Machinetest-  share referral code</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link " href="/dashboard">DASHBOARD</a>
+                <a class="nav-link active" href="/get_users">LIST USERS</a>
             </li>
+            
             <li class="nav-item">
                 <a class="nav-link " href="/">REGISTER</a>
             </li>
             @auth
+            <li class="nav-item">
+                <a class="nav-link " href="/dashboard">DASHBOARD</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link " href="/logout">LOGOUT</a>
             </li>
@@ -29,19 +34,26 @@
         </ul>
     </nav>
     <br>
-    <div style="border:2px solid black">
+    <div style="border:2px solid black" class="form-group">
+        {{-- restrict users list section , only logged admin can see users list details --}}
+        @if($user_data['email']=="admin@gmail.com")  
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">REGISTRATION SUCCESSFULLY COMPLETED</li>
+                <li class="breadcrumb-item active" aria-current="page">SHARE REFFERAL CODE</li>
             </ol>
         </nav>
-       
-        <p>if you want to see admin section kindly login with admin credentials  </p>
-        <p>kindly please login  <a href="/login" ><button class="btn btn-primary">LOGIN</button></a> </p>
-        
-        <br>
-        <p><b>{{ $refferal_code }}</b> is your referral code </p>
+        <form action="/register" method="POST">
+            @csrf
+            <label for="Username">Username</label>
+            <input type ="text" class="form-control" placeholder = "name" name ="name"><br>
+            <label for="Useremail">Useremail</label>
+            <input type ="text" class="form-control" placeholder = "email" name ="email"><br>
+            <label for="Referral code">Referral code(optional)</label>
+            <input type ="text" class="form-control" placeholder = "Referral code(optional)" name ="refferal_code"><br>
+            <center><button class="btn btn-primary">Register</button></center>
+        </form> 
     </div>
-   
+    
+
 </body>
 </html>
